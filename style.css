@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(236, 33%, 92%);
+  background-image: url("images/bg-desktop-light.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 45%;
+  --list-bg: hsl(0, 0%, 98%);
+  --text-color: hsl(235, 19%, 35%);
+  --footer-color:hsl(236, 9%, 61%);
+}
+body.dark {
+  background-image: url("images/bg-desktop-dark.jpg");
+  background-color: hsl(235, 21%, 11%);
+  --list-bg: hsl(235, 24%, 19%);
+  --text-color:#fff;
+  --footer-color:hsl(236, 33%, 92%);
+}
+li {
+  list-style: none;
+}
+input[type="text"] {
+  font-family: inherit;
+}
+
+.wrapper {
+  width:min(500px,100%);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme {
+  cursor: pointer;
+}
+.heading {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  font-weight: bold;
+}
+.form{
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.form__ring{
+  position:absolute;
+  transform: translateY(-50%);
+  top:50%;
+  left:10px;
+  display: inline-block;
+  width:25px;
+  height: 25px;
+  border: 1px solid rgba(0, 0, 0, 0.581);
+  border-radius: 50%;
+}
+.todo-list {
+  padding: 0;
+  margin-bottom: 0;
+  border-top-left-radius:10px;
+  border-top-right-radius:10px;
+}
+.form__input {
+  width: 100%;
+  padding-block:10px;
+  padding-left: 70px;
+  border:0;
+}
+.todo-list,
+.form__input {
+  background-color: var(--list-bg);
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+.todo-list__item {
+  cursor: pointer;
+  padding-block:10px;
+  border-bottom:1px inset;
+}
+/* todo text */
+.todo{
+    margin-left: 70px;
+}
+/*customising the checkbox  */
+.todo-list__label{
+    position: relative;
+}
+/* Hide the browser's default checkbox */
+.todo-list__label input[type='checkbox'] {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+/* Create a custom checkbox */
+ .checkmark {
+    position: absolute;
+    transform: translateY(-50%);
+    top:50%;
+    left:10px;
+    height: 25px;
+    width: 25px;
+    border-radius:50%;
+    border:1px solid rgba(0, 0, 0, 0.545);
+    background-color: transparent;
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .checkmark:hover {
+    border:2px solid hsl(220, 98%, 61%);
+  }
+  
+  .todo-list__label input:checked ~ .checkmark{
+    background-image: linear-gradient(hsl(192, 100%, 67%),hsl(280, 87%, 65%)) ;
+  }
+  .todo-list__label input:checked ~ .todo{
+    text-decoration: line-through;
+  }
+  .todo-list__label input ~ .checkmark .icon-check{
+    visibility: hidden;
+  }
+  .todo-list__label input:checked ~ .checkmark .icon-check{
+    visibility: visible;
+  }
+  /* styling delete */
+  .draggable{
+    position: relative;
+  }
+  .del{
+    position:absolute;
+    right:10px;
+    visibility:hidden;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+  .todo-list__item:hover .del{
+    visibility:visible;
+  }
+  .del:hover{
+    scale:1.125;
+    translate:1px;
+  }
+/* styling footer */
+.footer{
+  background-color: var(--list-bg);
+  color:var(--footer-color);
+  font-size:1rem;
+  padding-inline: 1em;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+  font-weight: 500;
+}
+.states.row{
+  min-width:40%;
+}
+.list-state,.clear-completed{
+  color: inherit;
+  background:transparent;
+  border:0;
+  font-size: inherit;
+  font-weight: 500;
+}
+
+/* hover effect for list state and clear completed */
+.list-state:hover,.clear-completed:hover{
+  user-select: none;
+  color:var(--text-color);
+  cursor: pointer;
+  font-weight: 500;
+}
+.list-state:active,.clear-completed:active{
+  translate: 2px 2px;
+}
+/* active state */
+.list-state.active{
+  scale:1.125;
+  font-weight: bold;
+  color:hsl(220, 98%, 61%);
+}
+.drag-drop{
+  text-align:center;
+  font-size:1rem;
+}
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: var(--text-color);
+}
+@media (max-width:430px){
+  .footer{
+    flex-wrap: wrap;
+  }
+  .states.row{
+    order:2;
+    width:100%;
+    justify-content:center;
+    gap:2em;
+  }
+}
