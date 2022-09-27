@@ -15,13 +15,7 @@ function StoreTodo(e) {
   populateList(todosArray);
   itemsLeft();
 }
-function todosStates() {
-  completedBtn.addEventListener("click", showCompletedTasks);
-  console.log("hi");
-}
-function showCompletedTasks() {
-  console.log("first");
-}
+
 function populateList(arr) {
   todoList.innerHTML = arr
     .map((item, index) => {
@@ -43,7 +37,7 @@ function populateList(arr) {
 }
 form.addEventListener("submit", StoreTodo);
 
-// clear completed task
+// toggle done task
 function completedTask(e) {
   if (!e.target.matches('input[type="checkbox"]')) return;
   const element = e.target.closest("li");
@@ -75,6 +69,16 @@ function itemsLeft() {
   document.getElementById("items-left").innerHTML = x;
 }
 itemsLeft();
+
+/* working on footer state button */
+statesRowItems.forEach((btn) => {
+  btn.addEventListener("click",(e) => {
+    statesRowItems.forEach((btn) => {
+      btn.classList.remove('active')
+    })
+    e.target.classList.add("active")
+  })
+})
 
 // calling list items on reload
 populateList(todosArray);
