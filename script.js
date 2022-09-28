@@ -5,6 +5,7 @@ const statesRow = document.querySelector(".states.row");
 const statesRowItems = statesRow.querySelectorAll("button.list-state");
 const completedBtn = statesRowItems[2];
 let todosArray = JSON.parse(localStorage.getItem("todoList")) || [];
+let dragStartId;
 function StoreTodo(e) {
   e.preventDefault();
   const text = this.querySelector("input").value;
@@ -34,9 +35,40 @@ function populateList(arr) {
         </li>`;
     })
     .join("");
+  drangNdrop();
 }
 form.addEventListener("submit", StoreTodo);
 
+function drangNdrop() {
+  const draggables = document.querySelectorAll(".draggable");
+  const todoLi = document.querySelectorAll(".todo-list__item");
+  draggables.forEach((draggable) => {
+    draggable.addEventListener("dragstart", dragStart);
+  });
+  todoLi.forEach((item) => {
+    item.addEventListener("dragover", dragOver);
+    item.addEventListener("drop", dragDrop);
+  });
+}
+function dragStart() {
+  dragStartId = +this.closest("li").getAttribute("data-index");
+}
+function dragOver(e) {
+  e.preventDefault();
+}
+function dragDrop(e) {
+  // e.preventDefault();
+  dragEndId = +this.closest("li").getAttribute("data-index");
+  swapItems(dragStartId, dragEndId);
+}
+// swap drag and drop items
+function swapItems(dragStartId, dragEndId) {
+  const todoLi = document.querySelectorAll(".todo-list__item");
+  const itemOne = todoLi[dragStartId].querySelector(".draggable");
+  const itemTwo = todoLi[dragEndId].querySelector(".draggable");
+  todoLi[dragStartId].appendChild(itemTwo);
+  todoLi[dragEndId].appendChild(itemOne);
+}
 // toggle done task
 function completedTask(e) {
   if (!e.target.matches('input[type="checkbox"]')) return;
@@ -72,13 +104,14 @@ itemsLeft();
 
 /* working on footer state button */
 statesRowItems.forEach((btn) => {
-  btn.addEventListener("click",(e) => {
+  btn.addEventListener("click", (e) => {
     statesRowItems.forEach((btn) => {
-      btn.classList.remove('active')
-    })
-    e.target.classList.add("active")
-  })
-})
+      btn.classList.remove("active");
+    });
+    e.target.classList.add("active");
+    console.log(e.target);
+  });
+});
 
 // calling list items on reload
 populateList(todosArray);
