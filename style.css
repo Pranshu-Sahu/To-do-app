@@ -46,6 +46,10 @@ input[type="text"] {
 
 .theme {
   cursor: pointer;
+  padding:3px;
+}
+.theme:focus{
+  outline:1px solid black;
 }
 .heading {
   text-transform: uppercase;
@@ -137,7 +141,7 @@ input[type="text"] {
   }
   .todo-list__label input:checked ~ .todo{
     text-decoration: line-through;
-    opacity: 0.6;
+    opacity: 0.8;
   }
   .todo-list__label input ~ .checkmark .icon-check{
     visibility: hidden;
@@ -203,11 +207,11 @@ input[type="text"] {
 }
 .drag-drop{
   text-align:center;
-  font-size:1rem;
+  font-size:1.25rem;
   color:var(--footer-color);
 }
 .attribution {
-  font-size: 11px;
+  font-size: 1rem;
   text-align: center;
   color:var(--footer-color);
 }
