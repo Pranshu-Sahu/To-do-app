@@ -109,7 +109,20 @@ statesRowItems.forEach((btn) => {
       btn.classList.remove("active");
     });
     e.target.classList.add("active");
-    console.log(e.target);
+    // on clicking active button
+    if (e.target.textContent === "All") {
+      populateList(todosArray);
+    }
+    // on clicking active state
+    if (e.target.textContent === "Active") {
+      // create array containing items which are active
+      const activeTodosArray = todosArray.filter((item) => !item.completed);
+      populateList(activeTodosArray);
+    }
+    if (e.target.textContent === "Completed") {
+      const activeTodosArray = todosArray.filter((item) => item.completed);
+      populateList(activeTodosArray);
+    }
   });
 });
 
