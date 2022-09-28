@@ -3,7 +3,6 @@ const completed = document.getElementById("btn-completed");
 const todoList = document.getElementById("todo-list");
 const statesRow = document.querySelector(".states.row");
 const statesRowItems = statesRow.querySelectorAll("button.list-state");
-const completedBtn = statesRowItems[2];
 let todosArray = JSON.parse(localStorage.getItem("todoList")) || [];
 let dragStartId;
 function StoreTodo(e) {
@@ -68,6 +67,14 @@ function swapItems(dragStartId, dragEndId) {
   const itemTwo = todoLi[dragEndId].querySelector(".draggable");
   todoLi[dragStartId].appendChild(itemTwo);
   todoLi[dragEndId].appendChild(itemOne);
+  console.log(todosArray);
+  // swap item position in todosArray
+  let x = todosArray[dragStartId];
+  todosArray[dragStartId] = todosArray[dragEndId];
+  todosArray[dragEndId] = x;
+  // update localStorage
+  localStorage.setItem("todoList", JSON.stringify(todosArray));
+  console.log(todosArray);
 }
 // toggle done task
 function completedTask(e) {

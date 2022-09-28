@@ -56,8 +56,9 @@ input[type="text"] {
 .form{
   position: relative;
   border-radius: 10px;
-  overflow: hidden;
+  border:none;
 }
+
 .form__ring{
   position:absolute;
   transform: translateY(-50%);
@@ -80,6 +81,10 @@ input[type="text"] {
   padding-block:10px;
   padding-left: 70px;
   border:0;
+  border-radius: 10px;
+}
+.form__input:focus{
+  outline: 0;
 }
 .todo-list,
 .form__input {
@@ -132,6 +137,7 @@ input[type="text"] {
   }
   .todo-list__label input:checked ~ .todo{
     text-decoration: line-through;
+    opacity: 0.6;
   }
   .todo-list__label input ~ .checkmark .icon-check{
     visibility: hidden;
@@ -198,10 +204,12 @@ input[type="text"] {
 .drag-drop{
   text-align:center;
   font-size:1rem;
+  color:var(--footer-color);
 }
 .attribution {
   font-size: 11px;
   text-align: center;
+  color:var(--footer-color);
 }
 .attribution a {
   color: var(--text-color);
