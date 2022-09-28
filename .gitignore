@@ -15,7 +15,5 @@
 .DS_Store
 .prettierignore
 
-#avoid tracking design folder
-design/
 # avoid tracking style guide file
 style-guide.md
